@@ -5,6 +5,7 @@ set background=dark
 set t_Co=256
 hi Normal guifg=#e0def4 ctermbg=NONE guibg=NONE gui=NONE
 
+hi LspInlayHint guifg=#5c6370 guibg=#1e222a
 hi ErrorMsg guifg=#eb6f92 guibg=NONE
 hi WarningMsg guifg=#eb6f92 guibg=NONE
 hi DiffText guifg=#eb6f92 guibg=NONE
