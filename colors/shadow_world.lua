@@ -2,6 +2,28 @@
 vim.cmd("hi clear")
 vim.g.colors_name = "shadow_world"
 
+local palette = require("palette")
+
+-- Everforest Darker Palette
+local colors = {
+  bg0 = "#2d353b", -- Background
+  bg1 = "#343f44", -- CursorLine
+  bg2 = "#3d484d",
+  fg0 = "#d3c6aa", -- Foreground
+  fg1 = "#9da9a0",
+  yellow = "#dbbc7f",
+  orange = "#e69875",
+  red = "#e67e80",
+  magenta = "#d699b6",
+  blue = "#7fbbb3",
+  cyan = "#83c092",
+  green = "#a7c080",
+  grey1 = "#4b565c",
+  grey2 = "#4e595e",
+  grey3 = "#56635f",
+  none = "NONE"
+}
+
 -- Basic settings
 local highlights = {
   -- General
@@ -78,8 +100,50 @@ local highlights = {
   VimwikiHeader3 = { fg = "#7aa2f7", bold = true },
   VimwikiHeader4 = { fg = "#bb9af7", bold = true },
   VimwikiHeader5 = { fg = "#ff9e64", bold = true },
-  VimwikiHeader6 = { fg = "#e0af68", bold = true }
+  VimwikiHeader6 = { fg = "#e0af68", bold = true },
+
 }
+
+-- Set Neorg highlights
+local neorg_highlights = {
+  -- Headings
+  ["@neorg.headings.1.title"] = { fg = palette.catppuccin.lavender, bold = true },
+  ["@neorg.headings.2.title"] = { fg = palette.catppuccin.green, bold = true },
+  ["@neorg.headings.3.title"] = { fg = palette.catppuccin.blue, bold = true },
+  ["@neorg.headings.4.title"] = { fg = palette.catppuccin.magenta, bold = true },
+  ["@neorg.headings.5.title"] = { fg = palette.catppuccin.orange, bold = true },
+  ["@neorg.headings.6.title"] = { fg = palette.catppuccin.yellow, bold = true },
+
+  ["@neorg.headings.1.prefix"] = { fg = palette.catppuccin.lavender, bold = true },
+  ["@neorg.headings.2.prefix"] = { fg = palette.catppuccin.green, bold = true },
+  ["@neorg.headings.3.prefix"] = { fg = palette.catppuccin.blue, bold = true },
+  ["@neorg.headings.4.prefix"] = { fg = palette.catppuccin.magenta, bold = true },
+  ["@neorg.headings.5.prefix"] = { fg = palette.catppuccin.orange, bold = true },
+  ["@neorg.headings.6.prefix"] = { fg = palette.catppuccin.yellow, bold = true },
+  -- Markup
+  ["@neorg.markup.bold"] = { fg = colors.fg0, bold = true },
+  ["@neorg.markup.italic"] = { fg = palette.catppuccin.sapphire, italic = true },
+  ["@neorg.markup.underline"] = { fg = colors.blue, underline = true },
+  ["@neorg.markup.strikethrough"] = { fg = colors.grey1, strikethrough = true },
+  ["@neorg.markup.verbatim"] = { fg = colors.orange, bg = colors.bg1 },
+  ["@neorg.markup.inline_math"] = { fg = colors.cyan, italic = true },
+  ["@neorg.markup.code.block"] = { fg = colors.green, bg = colors.bg1 },
+
+  -- Links
+  ["@neorg.links.file"] = { fg = colors.blue, underline = true },
+  ["@neorg.links.url"] = { fg = colors.cyan, underline = true },
+  ["@neorg.links.description"] = { fg = colors.orange, italic = true },
+
+  -- To-Do Items
+  ["@neorg.todo_items.undone"] = { fg = colors.red, bold = true },
+  ["@neorg.todo_items.done"] = { fg = colors.green, bold = true },
+  ["@neorg.todo_items.pending"] = { fg = colors.yellow, italic = true }
+}
+
+-- Apply highlights
+for group, opts in pairs(neorg_highlights) do
+  vim.api.nvim_set_hl(0, group, opts)
+end
 
 -- Apply highlights
 for group, opts in pairs(highlights) do
